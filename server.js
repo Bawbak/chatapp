@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const server = require('http').Server(app);
-const authController = require('./controllers/auth');
+const { auth } = require('./controllers/auth');
 
 const port = process.env.PORT || 3000;
 
@@ -15,7 +15,7 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // Check the authorization for all the end points
-app.use(authController.auth);
+app.use(auth);
 
 // User Router
 app.use('/user', require('./routes/user'));

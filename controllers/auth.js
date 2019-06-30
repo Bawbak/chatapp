@@ -32,12 +32,12 @@ authController.login = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     // Check if the user is exist
     if(!user) {
-      res.status(401).json({ error: "The username and/or password is incorrect!"});
+      res.status(401).json({ error: "The username and/or password is incorrect!1"});
       return;
     }
     // Check if the password is correct
     if(!bcrypt.compareSync(req.body.password, user.password)) {
-      res.status(401).json({ error: "The username and/or password is incorrect!"});
+      res.status(401).json({ error: "The username and/or password is incorrect!2"});
       return;
     }
     // If everything is fine, then send back a token which created by jwt, that user could use that to authorization to move between pages
