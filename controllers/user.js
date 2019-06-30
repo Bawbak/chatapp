@@ -32,7 +32,6 @@ userController.getUser = async (req, res) => {
     res.json(user);
 
   } catch (err) {
-    console.log(err.kind === ObjectId);
     res.status(500).send({ error: err.message });
   }
 };
@@ -41,11 +40,8 @@ userController.getUser = async (req, res) => {
 userController.deleteUser = async (req, res) => {
   try {
     // Only an authorized user can be deleted
-    console.log(req.user._id);
-    console.log(req.params.userID);
     if(req.user && req.user._id == req.params.userID) {
       const userID = req.user._id;
-      console.log('if: ' + userID);
       await User.deleteOne({ _id: userID });
       res.json({ status: 'OK'});
     }

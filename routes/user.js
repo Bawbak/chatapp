@@ -8,7 +8,7 @@ router.route('/')
   .get(userController.getAllUsers);
 
 router.route('/:userID')
-  // @route GET /user/login
+  // @route GET /user/:userID
   // @desc  Get specific user by id
   .get(userController.getUser);
 
@@ -23,7 +23,7 @@ router.route('/login')
   .post(userController.login);
 
 router.route('/:userID/delete')
-  // @route POST /user/login
+  // @route GET /user/:userID/delete
   // @desc  Delete specific user
   .get(userController.deleteUser);
 
