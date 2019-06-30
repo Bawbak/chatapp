@@ -12,16 +12,6 @@ router.route('/:userID')
   // @desc  Get specific user by id
   .get(userController.getUser);
 
-router.route('/register')
-  // @route POST /user/register
-  // @desc  Register new user
-  .post(userController.register);
-
-router.route('/login')
-  // @route POST /user/login
-  // @desc  login to account
-  .post(userController.login);
-
 router.route('/:userID/delete')
   // @route GET /user/:userID/delete
   // @desc  Delete specific user
