@@ -3,25 +3,19 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 // Authentication controller object to export all the methodes
-let authController = {};
+const authController = {};
 
 // Register new user
 authController.register = async (req, res) => {
-  console.log(req.body.password);
   try {
     // Create new user by pass the info that comes from client
     const newUser = new User(req.body);
-    console.log(1);
-    console.log(req.body.password);
     // hash the user password
     newUser.password = await bcrypt.hash(req.body.password, 10);
-    console.log(2);
     // Save new user in db
     await newUser.save();
-    console.log(3);
     // Avoid to send back the password to client
     newUser.password = undefined;
-    console.log(4);
     // Send the new user created to client
     res.json(newUser);
 

@@ -1,7 +1,7 @@
 const User = require('../models/user');
 
 // User controller object to export all the methodes
-let userController = {};
+const userController = {};
 
 // Send all users
 userController.getAllUsers = async (req, res) => {
@@ -42,10 +42,11 @@ userController.deleteUser = async (req, res) => {
       const userID = req.user._id;
       await User.deleteOne({ _id: userID });
       res.json({ status: 'OK'});
+      return;
     }
+    res.status(400).send({ error: "the user that's going to be deleted must be authorized and exist"});
   } catch (err) {
-    // res.status(500).send({ error: err.message });
-    res.status(500).send({ error: 'error' });
+    res.status(500).send({ error: err.message });
   }
 };
 
